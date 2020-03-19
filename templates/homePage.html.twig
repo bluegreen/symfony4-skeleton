@@ -1,0 +1,48 @@
+{% extends './base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        html,
+        body {
+          height: 100%;
+          text-align: center;
+        }
+
+        body {
+          display: -ms-flexbox;
+          display: flex;
+          color: #666;
+        }
+        
+        .cover-container {
+          max-width: 42em;
+        }
+
+        .masthead {
+          margin-bottom: 2rem;
+        }
+
+        .cover {
+          padding: 0 1.5rem;
+        }
+        .cover .btn-lg {
+          padding: .75rem 1.25rem;
+          font-weight: 700;
+        }
+
+        .mastfoot {
+          color: #666;
+        }        
+    </style>
+{% endblock %}
+{% block body %}
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto"></header>
+
+  <main role="main" class="inner cover">
+      <p class="lead"><a href="/" class="btn btn-lg  btn-primary">Start</a></p>
+  </main>
+
+  <footer class="mastfoot mt-auto"></footer>
+</div>    
+{% endblock %}
