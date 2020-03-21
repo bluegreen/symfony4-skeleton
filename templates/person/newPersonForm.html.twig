@@ -1,0 +1,61 @@
+{% extends './base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        label.required:before {
+            content: "*";
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        {{ form_start(form, {'action': path('addPerson'), 'method': 'POST'}) }}
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                Hello,<br>znalazłeś się na stronie, na której możesz wprowadzić swoje dane. Nie bój się, to tylko badania.
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        {{ form_row(form.firstName) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        {{ form_row(form.lastName) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        {{ form_row(form.age) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        {{ form_row(form.dataProcessingAgreement) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 text-right">
+                        {{ form_row(form.btnAdd) }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 text-left">
+
+            </div>
+            <div class="col-md-6 col-sm-12 text-right">
+
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
