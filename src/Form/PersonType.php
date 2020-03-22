@@ -20,35 +20,46 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PersonType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('firstName', TextType::class, [
             'label' => 'Imię',
-            'required' => true
+            'required' => true,
         ]);
         $builder->add('lastName', TextType::class, [
             'label' => 'Nazwisko',
-            'required' => true
+            'required' => true,
         ]);
         $builder->add('age', NumberType::class, [
-            'label'=> 'Wiek',
+            'label' => 'Wiek',
             'required' => true,
-            'html5' => true
+            'html5' => true,
+            'attr' => [
+                'min' => 18,
+                'max' => 99,
+                'data-invalid-message' => 'Wprowadzona wartość jest nieprawidłowa. Proszę wprowadzić liczbę z przedziału od 18 do 99.',
+            ],
         ]);
         $builder->add('email', EmailType::class, [
-            'label'=> 'E-mail',
-            'required' => true
+            'label' => 'E-mail',
+            'required' => true,
+            'attr' => [
+                'data-invalid-message' => 'Wprowadzona wartość jest nieprawidłowa. Proszę wprowadzić prawidłowy adres e-mail.',
+            ],
         ]);
         $builder->add('dataProcessingAgreement', CheckboxType::class, [
-            'label'=> 'Wyrażam zgodę na przetwarzanie danych',
-            'required' => true
+            'label' => 'Wyrażam zgodę na przetwarzanie danych',
+            'required' => true,
+            'attr' => [
+                'data-invalid-message' => 'Pole jest wymagane.',
+            ],
         ]);
         $builder->add('btnAdd', SubmitType::class, [
-            'label'=> 'Wyślij'
+            'label' => 'Wyślij',
         ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver) : void
+    public function configureOptions(OptionsResolver $resolver): void
     {
     }
 }

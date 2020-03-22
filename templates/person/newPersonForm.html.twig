@@ -5,57 +5,115 @@
         label.required:before {
             content: "*";
         }
+
+        body {
+            background-color: #f8f9fa!important;
+        }
+        .form-group {margin-bottom: 0;}
+        .form-row { display: block; margin-bottom: 1rem;}
+        .form-error select,
+        .form-error input[type=text],
+        .form-error input[type=number],
+        .form-error input[type=email],
+        .form-error input[type=url],
+        .form-error textarea {
+            border-color: #dc3545 !important;
+        }
+
+        .form select.field-error:focus,
+        .form-error input[type=text]:focus,
+        .form-error input[type=email]:focus,
+        .form-error input[type=url]:focus,
+        .form-error textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.3);
+        }
+
+        .invalid-message {
+            display: none;
+            width: 100%;
+            margin-top: .25rem;
+            font-size: 80%;
+            color: #dc3545;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 1rem;
+            }
+        }
     </style>
 {% endblock %}
 {% block body %}
     <div class="container">
-        {{ form_start(form, {'action': path('addPerson'), 'method': 'POST'}) }}
+        {{ form_start(form, {'action': path('addPerson'), 'method': 'POST', 'attr': {'class': 'form'}}) }}
         <div class="row">
-            <div class="col-md-6 col-sm-12">
-                Hello,<br>znalazłeś się na stronie, na której możesz wprowadzić swoje dane. Nie bój się, to tylko badania.
-            </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-12 col-sm-12" style="padding: 2rem;">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        {{ form_row(form.firstName) }}
+                        <h6 class="border-bottom border-gray pb-2 mb-4"><strong>Wypełnij formularz</strong></h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        {{ form_row(form.lastName) }}
+                        <div class="form-row">
+                            {{ form_row(form.firstName) }}
+                            <div class="invalid-message"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        {{ form_row(form.age) }}
+                        <div class="form-row">
+                            {{ form_row(form.lastName) }}
+                            <div class="invalid-message"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        {{ form_row(form.email) }}
+                        <div class="form-row">
+                            {{ form_row(form.age) }}
+                            <div class="invalid-message"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        {{ form_row(form.dataProcessingAgreement) }}
+                        <div class="form-row">
+                            {{ form_row(form.email) }}
+                            <div class="invalid-message"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 text-right">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-row">
+                            {{ form_row(form.dataProcessingAgreement) }}
+                            <div class="invalid-message"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 text-left">
+                        <small class="text-muted">* Wymagane pola</small>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
                         {{ form_row(form.btnAdd) }}
                     </div>
                 </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12 text-left">
-
-            </div>
-            <div class="col-md-6 col-sm-12 text-right">
-
             </div>
         </div>
         {{ form_end(form) }}
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector(".form");
+            const fv = new FormValidate(form);
+        });
+    </script>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/validation.js') }}"></script>
 {% endblock %}
