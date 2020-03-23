@@ -37,10 +37,15 @@
             color: #dc3545;
         }
 
-        @media (max-width: 768px) {
-            body {
-                font-size: 1rem;
-            }
+        .alert-success {
+            color: #fff;
+            background-color: #7AA12E;
+            border-color: #7AA12E;
+        }
+
+        #statusSaveData {
+            display: none;
+            transition: height 350ms ease-in-out;
         }
     </style>
 {% endblock %}
@@ -51,6 +56,9 @@
             <div class="col-lg-6 col-md-12 col-sm-12" style="padding: 2rem;">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
+                        <div id="statusSaveData" class="alert alert-success" role="alert">
+                            Zapisano dane!
+                        </div>
                         <h6 class="border-bottom border-gray pb-2 mb-4"><strong>Wypełnij formularz</strong></h6>
                     </div>
                 </div>

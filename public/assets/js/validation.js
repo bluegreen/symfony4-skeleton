@@ -1,7 +1,7 @@
 class FormValidate {
     constructor(form) {
         this.form = form;
-
+        this.emailElement = this.form.querySelector('#person_email');
         this.form.setAttribute("novalidate", "novalidate");
 
         this.prepareElements();
@@ -59,13 +59,13 @@ class FormValidate {
         return valid;
     }
 
-    errorMessage(field, valid) {
+    errorMessage(field, valid, messageOverwrite = '') {
         let message = '';
 
         if(field.value === '') {
             message = 'Pole jest wymagane.';
         } else {
-            message = field.dataset.invalidMessage;
+            message = (messageOverwrite !== '') ? messageOverwrite : field.dataset.invalidMessage;
         }
 
         let errorMessageContainer = field.closest(".form-row").querySelector(".invalid-message");
@@ -83,16 +83,43 @@ class FormValidate {
 
     bindSubmit() {
         this.form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            let formErrors = false;
             const elements = this.getFields();
 
             for (const el of elements) {
                 const valid = this.fieldValidator(el);
 
                 if(!valid) {
-                    e.preventDefault();
+                    formErrors = true;
                 }
 
                 this.errorMessage(el, valid);
+            }
+
+            if (!formErrors) {
+                const formData = new FormData();
+                for (const el of elements) {
+                    formData.append(el.name, el.value);
+                }
+
+                const url = this.form.getAttribute("action");
+                this.getData(
+                    url,
+                    'POST',
+                    formData
+                ).then((result) => {
+                    if(typeof result.data === 'string' && result.data === 'true') {
+                        this.form.reset();
+                        document.getElementById("statusSaveData").style.display = 'block';
+                        setTimeout(function() {
+                            document.getElementById("statusSaveData").style.display = 'none';
+                        }, 5000);
+                    } else {
+                        this.errorMessage(this.emailElement, false, 'Wprowadzony adres e-mail nie istnieje.');
+                    }
+                });
             }
         });
     }
@@ -103,5 +130,14 @@ class FormValidate {
 
     ageValidation(value) {
         return value > 17 && value < 100 && /^-?\d+$/.test(value);
+    }
+
+    getData(url, method, formData) {
+        return fetch(url, {
+            method: method,
+            body: formData
+        }).then((response) => {
+            return response.json();
+        });
     }
 };
