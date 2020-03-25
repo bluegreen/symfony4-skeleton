@@ -20,12 +20,10 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $categoryId
-     * @return int
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getCountProductByCategoryId(int $categoryId) : int
+    public function getCountProductByCategoryId(int $categoryId): int
     {
         $entityManager = $this->getEntityManager();
 
@@ -41,11 +39,7 @@ class CategoryRepository extends ServiceEntityRepository
         return intval($result);
     }
 
-    /**
-     * @param int $categoryId
-     * @return array
-     */
-    public function getProductByCategoryId(int $categoryId) : array
+    public function getProductByCategoryId(int $categoryId): array
     {
         $entityManager = $this->getEntityManager();
 

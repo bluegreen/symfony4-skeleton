@@ -17,5 +17,4 @@ class DetectingDisposableEmailAddressTest extends TestCase
 
         $this->assertEquals('false', $result);
     }
-
 }

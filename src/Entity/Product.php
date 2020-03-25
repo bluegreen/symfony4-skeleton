@@ -15,31 +15,43 @@ class Product
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string|null
      */
     private $description;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=3)
+     *
+     * @var float
      */
     private $price;
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @var bool
      */
     private $available = false;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="products")
+     *
+     * @var Collection|Category[]
      */
     private $category;
 
@@ -77,12 +89,12 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(string $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 

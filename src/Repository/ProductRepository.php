@@ -22,11 +22,10 @@ final class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return int
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getCountOfAvailableProduct() : int
+    public function getCountOfAvailableProduct(): int
     {
         $result = $this->createQueryBuilder('p')
             ->select('count(p.id)')
@@ -38,10 +37,7 @@ final class ProductRepository extends ServiceEntityRepository
         return intval($result);
     }
 
-    /**
-     * @return array
-     */
-    public function getAvailableProduct() : array
+    public function getAvailableProduct(): array
     {
         return $this->createQueryBuilder('p')
             ->where('p.available = :available')
@@ -50,11 +46,7 @@ final class ProductRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
-    /**
-     * @param string $phrase
-     * @return array
-     */
-    public function getProductsByPhrase(string $phrase) : array
+    public function getProductsByPhrase(string $phrase): array
     {
         return $this->createQueryBuilder('p')
             ->where('p.name LIKE :name')

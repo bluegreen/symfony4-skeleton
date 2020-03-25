@@ -1,4 +1,6 @@
 parameters:
-	checkMissingIterableValueType: false
-	checkGenericClassInNonGenericObjectType: false
-
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    excludes_analyse:
+        - %rootDir%/../../../tests/bootstrap.php
+        - %rootDir%/../../../src/Migrations/Version20200325154637.php

@@ -15,16 +15,22 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Product", mappedBy="category")
+     *
+     * @var Collection|Product[]
      */
     private $products;
 

@@ -59,10 +59,10 @@
             "@auto-scripts"
         ],
         "check-cs": [
-            "php-cs-fixer fix --dry-run --diff"
+            "php-cs-fixer fix --dry-run --diff --using-cache=no"
         ],
         "fix-cs": [
-            "php-cs-fixer fix"
+            "php-cs-fixer fix --using-cache=no"
         ],
         "phpstan": [
             "bin/console cache:clear --env=test",
