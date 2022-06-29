@@ -102,17 +102,8 @@
     "guzzlehttp/psr7": {
         "version": "1.6.1"
     },
-    "jdorn/sql-formatter": {
-        "version": "v1.2.17"
-    },
     "laminas/laminas-code": {
         "version": "3.4.1"
-    },
-    "laminas/laminas-eventmanager": {
-        "version": "3.2.1"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.0.1"
     },
     "myclabs/deep-copy": {
         "version": "1.9.5"
@@ -167,9 +158,6 @@
     },
     "phpunit/php-timer": {
         "version": "3.0.0"
-    },
-    "phpunit/php-token-stream": {
-        "version": "4.0.0"
     },
     "phpunit/phpunit": {
         "version": "4.7",
@@ -447,9 +435,6 @@
     },
     "twig/twig": {
         "version": "v3.0.3"
-    },
-    "webimpress/safe-writer": {
-        "version": "2.0.1"
     },
     "webmozart/assert": {
         "version": "1.7.0"
